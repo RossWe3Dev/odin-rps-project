@@ -42,7 +42,6 @@ function getHumanChoice() {
 let humanScore = 0;
 let computerScore = 0;
 
-console.log(`Player score = ${humanScore} | Computer score = ${computerScore}`);
 
 
 // logic for one round
@@ -54,31 +53,37 @@ function playRound(humanChoice, computerChoice) {
     } else if (humanChoice === "rock") {
         switch (computerChoice) {
             case "paper":
-                console.log("You lose :( Paper beats Rock!")
+                console.log("You lose :( Paper beats Rock!");
+                computerScore = ++computerScore;
                 break;
 
             case "scissors":
-                console.log("You win :) Rock beats Scissors!")
+                console.log("You win :) Rock beats Scissors!");
+                humanScore = ++humanScore;
                 break;
         }
     } else if (humanChoice === "paper") {
         switch (computerChoice) {
             case "rock":
-                console.log("You win :) Paper beats Rock!")
+                console.log("You win :) Paper beats Rock!");
+                humanScore = ++humanScore;
                 break;
 
             case "scissors":
-                console.log("You lose :( Scissors beat Paper!")
+                console.log("You lose :( Scissors beat Paper!");
+                computerScore = ++computerScore;
                 break;
         }
     } else if (humanChoice === "scissors") {
         switch (computerChoice) {
             case "paper":
-                console.log("You win :) Scissors beat Paper!")
+                console.log("You win :) Scissors beat Paper!");
+                humanScore = ++humanScore;
                 break;
 
             case "rock":
-                console.log("You lose :( Rock beats Scissors!")
+                console.log("You lose :( Rock beats Scissors!");
+                computerScore = ++computerScore;
                 break;
         }
     }
@@ -88,3 +93,4 @@ const humanSelection = getHumanChoice();
 const computerSelection = getComputerChoice();
 
 playRound(humanSelection, computerSelection);
+console.log(`Player score = ${humanScore} | Computer score = ${computerScore}`);
