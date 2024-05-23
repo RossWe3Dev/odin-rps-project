@@ -1,4 +1,5 @@
-console.log("Hello World!");
+console.log("Let's play RPS!");
+
 
 // get the computer choice between rock, paper or scissors
 
@@ -25,10 +26,29 @@ function getComputerChoice() {
 
 getComputerChoice();
 
+
 // get the user's choice
 function getHumanChoice() {
-    let humanChoice = prompt("What would you like to pick? \n Select between rock, paper pr scissors")
-    console.log(`You chose '${humanChoice}'`);
+    let humanResult = prompt("What would you like to pick? \n Select between rock, paper pr scissors")
+    console.log(`You chose '${humanResult}'`);
 }
 
 getHumanChoice();
+
+
+// keep track of scores
+let humanScore = 0;
+let computerScore = 0;
+
+console.log(`Player score = ${humanScore} | Computer score = ${computerScore}`);
+
+
+// logic for one round
+function playRound(humanChoice, computerChoice) {
+
+}
+
+const humanChoice = getHumanChoice().toLowerCase();
+const computerChoice = getComputerChoice();
+
+playRound(humanChoice, computerChoice);
