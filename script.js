@@ -20,7 +20,6 @@ function getComputerChoice() {
         pcResult = "scissors";
     }
 
-    console.log(pcNumber);      //todo print the number just to be sure, need to delete later 
     console.log(`The computer chose '${pcResult}'`);
     return pcResult;
 }
@@ -50,49 +49,40 @@ console.log(`Player score = ${humanScore} | Computer score = ${computerScore}`);
 function playRound(humanChoice, computerChoice) {
 
     if (humanChoice === computerChoice) {
-        console.log(humanChoice, computerChoice);
         console.log("It's a Tie! You and the Computer chose the same option :|");
 
     } else if (humanChoice === "rock") {
         switch (computerChoice) {
             case "paper":
-                console.log(humanChoice, computerChoice);
                 console.log("You lose :( Paper beats Rock!")
                 break;
 
             case "scissors":
-                console.log(humanChoice, computerChoice);
                 console.log("You win :) Rock beats Scissors!")
                 break;
         }
     } else if (humanChoice === "paper") {
         switch (computerChoice) {
             case "rock":
-                console.log(humanChoice, computerChoice);
                 console.log("You win :) Paper beats Rock!")
                 break;
 
             case "scissors":
-                console.log(humanChoice, computerChoice);
                 console.log("You lose :( Scissors beat Paper!")
                 break;
         }
     } else if (humanChoice === "scissors") {
         switch (computerChoice) {
             case "paper":
-                console.log(humanChoice, computerChoice);
                 console.log("You win :) Scissors beat Paper!")
                 break;
 
             case "rock":
-                console.log(humanChoice, computerChoice);
                 console.log("You lose :( Rock beats Scissors!")
                 break;
         }
     }
 }
-
-
 
 const humanSelection = getHumanChoice();
 const computerSelection = getComputerChoice();
