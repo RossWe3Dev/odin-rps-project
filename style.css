@@ -16,6 +16,7 @@ body {
     font-size: 2rem;
     font-weight: bold;
     text-align: center;
+    line-height: 150%;
     max-width: 75vw;
     margin: auto;
 }
@@ -28,5 +29,6 @@ body {
 kbd {
     background-color: rgba(211, 211, 211, 0.75);
     color: blue;
-    padding: 0.25rem;
+    padding: 0.33rem;
+    border-radius: 0.25rem;
 }
