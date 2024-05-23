@@ -35,13 +35,10 @@ function getHumanChoice() {
     return humanResult;
 }
 
-// getHumanChoice();
 
-
-// keep track of scores
+// variables to keep track of scores
 let humanScore = 0;
 let computerScore = 0;
-
 
 
 // logic for one round
@@ -89,8 +86,27 @@ function playRound(humanChoice, computerChoice) {
     }
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
 
-playRound(humanSelection, computerSelection);
-console.log(`Player score = ${humanScore} | Computer score = ${computerScore}`);
+// logic for the whole game -> who's the first to win 5 rounds
+function playGame() {
+    let humanSelection = getHumanChoice();
+    let computerSelection = getComputerChoice();
+
+    playRound(humanSelection, computerSelection);
+    console.log(`Player score = ${humanScore} | Computer score = ${computerScore}`);
+
+}
+
+playGame();
+
+
+/* function playGameWithLoops() {
+    let humanSelection = getHumanChoice();
+    let computerSelection = getComputerChoice();
+
+    let finalRound = 5;
+    for (let i = 0; i < finalRound; i++) {
+        playRound(humanSelection, computerSelection);
+        console.log(`Player score = ${humanScore} | Computer score = ${computerScore}`);
+    }
+} */
