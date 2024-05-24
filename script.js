@@ -117,6 +117,16 @@ function playGame() {
     console.log(`Round 5 player: '${humanSelection}' pc: '${computerSelection}'`);
     playRound(humanSelection, computerSelection);
 
+    if (humanScore > computerScore) {
+        console.log('Congratulations you won!');
+        alert('Congratulations you won!');
+    } else if (computerScore > humanScore) {
+        console.log('You lost to a random algorithm!');
+        alert('You lost to a random algorithm!');
+    } else {
+        console.log('Perfectly balanced, it\'s a tie!');
+        alert('Perfectly balanced, it\'s a tie!');
+    }
 }
 
 playGame();
