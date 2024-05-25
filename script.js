@@ -26,9 +26,13 @@ function getComputerChoice() {
 
 // get the user's choice
 function getHumanChoice() {
-    let humanInput = prompt(`Round ${currentRound}\n\nWhat would you like to pick?\nSelect between ~~~ rock, paper or scissors ~~~`)
+    let humanInput = prompt(`Round ${currentRound}\n\nWhat would you like to pick?\nSelect between ~ rock, paper or scissors ~`)
     let humanResult = humanInput.toLowerCase();     //* Immediately convert it to lower case to print a nice looking message
-    return humanResult;
+    if (humanResult === 'rock' || humanResult === 'paper' || humanResult === 'scissors') {
+        return humanResult;
+    } else {
+        alert("Please refresh page and choose a valid option between ~ rock, paper or scissors ~");     //todo make it so the program stops
+    }
 }
 
 
@@ -83,9 +87,9 @@ function playRound(humanChoice, computerChoice) {
         }
     }
 
-    console.log(`Round ${currentRound} \n\nPlayer chose: '${humanChoice}' - Computer chose: '${computerChoice}'`)
+    console.log(`Round ${currentRound} \n\nPlayer chose: '${humanChoice}' - Computer chose: '${computerChoice}'`);
     console.log(`${roundResult}\n\nPlayer score = ${humanScore} | Computer score = ${computerScore}`);
-    alert(`${roundResult}\n\nPlayer score = ${humanScore} | Computer score = ${computerScore}`);
+    alert(`Player chose: '${humanChoice}' - Computer chose: '${computerChoice}'\n${roundResult}\n\nPlayer score = ${humanScore} | Computer score = ${computerScore}`);
 }
 
 
