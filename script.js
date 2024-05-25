@@ -1,4 +1,4 @@
-console.log("Let's play RPS!");
+console.log("LET'S PLAY RPS!");
 
 
 // get the computer choice between rock, paper or scissors
@@ -9,7 +9,7 @@ function getRandomInt(max) {
 };
 
 function getComputerChoice() {
-    let pcNumber = getRandomInt(3);     //* Applied getRandomInt(3)
+    let pcNumber = getRandomInt(3);
     let pcResult;
 
     if (pcNumber === 0) {
@@ -20,24 +20,23 @@ function getComputerChoice() {
         pcResult = "scissors";
     }
 
-    console.log(`The computer chose '${pcResult}'`);
     return pcResult;
 }
 
 
 // get the user's choice
 function getHumanChoice() {
-    let humanInput = prompt("What would you like to pick? \n \nSelect between rock, paper or scissors")
+    let humanInput = prompt(`Round ${currentRound}\n\nWhat would you like to pick?\nSelect between ~~~ rock, paper or scissors ~~~`)
     let humanResult = humanInput.toLowerCase();     //* Immediately convert it to lower case to print a nice looking message
-    console.log(`You chose '${humanResult}'`);
     return humanResult;
 }
 
 
-// variables to keep track of scores
+// variables that keep track of scores and round number, starting from round 1
 let humanScore = 0;
 let computerScore = 0;
 
+let currentRound = 1;
 
 // logic for one round
 function playRound(humanChoice, computerChoice) {
@@ -84,61 +83,35 @@ function playRound(humanChoice, computerChoice) {
         }
     }
 
-    console.log(`${roundResult} \n \nPlayer score = ${humanScore} | Computer score = ${computerScore}`);
-    alert(`${roundResult} \n \nPlayer score = ${humanScore} | Computer score = ${computerScore}`);
+    console.log(`Round ${currentRound} \n\nPlayer chose: '${humanChoice}' - Computer chose: '${computerChoice}'`)
+    console.log(`${roundResult}\n\nPlayer score = ${humanScore} | Computer score = ${computerScore}`);
+    alert(`${roundResult}\n\nPlayer score = ${humanScore} | Computer score = ${computerScore}`);
 }
 
 
-// logic for the whole game -> who's the first to win 5 rounds
+// loop to call playRound 5 times and return the winner after
 function playGame() {
-    let humanSelection = getHumanChoice();
-    let computerSelection = getComputerChoice();
+    let humanSelection;
+    let computerSelection;
 
-    console.log(`Round 1 player: '${humanSelection}' pc: '${computerSelection}'`);
-    playRound(humanSelection, computerSelection);
-
-    humanSelection = getHumanChoice();
-    computerSelection = getComputerChoice();
-    console.log(`Round 2 player: '${humanSelection}' pc: '${computerSelection}'`);
-    playRound(humanSelection, computerSelection);
-
-    humanSelection = getHumanChoice();
-    computerSelection = getComputerChoice();
-    console.log(`Round 3 player: '${humanSelection}' pc: '${computerSelection}'`);
-    playRound(humanSelection, computerSelection);
-
-    humanSelection = getHumanChoice();
-    computerSelection = getComputerChoice();
-    console.log(`Round 4 player: '${humanSelection}' pc: '${computerSelection}'`);
-    playRound(humanSelection, computerSelection);
-
-    humanSelection = getHumanChoice();
-    computerSelection = getComputerChoice();
-    console.log(`Round 5 player: '${humanSelection}' pc: '${computerSelection}'`);
-    playRound(humanSelection, computerSelection);
+    for (let i = 0; i < 5; i++) {
+        humanSelection = getHumanChoice();
+        computerSelection = getComputerChoice();
+        playRound(humanSelection, computerSelection);
+        currentRound = ++currentRound;
+    };
 
     if (humanScore > computerScore) {
-        console.log('Congratulations you won!');
+        console.log('\nCongratulations you won!');
         alert('Congratulations you won!');
     } else if (computerScore > humanScore) {
-        console.log('You lost to a random algorithm!');
+        console.log('\nYou lost to a random algorithm!');
         alert('You lost to a random algorithm!');
     } else {
-        console.log('Perfectly balanced, it\'s a tie!');
+        console.log('\nPerfectly balanced, it\'s a tie!');
         alert('Perfectly balanced, it\'s a tie!');
     }
+
 }
 
 playGame();
-
-
-/* function playGameWithLoops() {
-    let humanSelection = getHumanChoice();
-    let computerSelection = getComputerChoice();
-
-    let finalRound = 5;
-    for (let i = 0; i < finalRound; i++) {
-        playRound(humanSelection, computerSelection);
-        console.log(`Player score = ${humanScore} | Computer score = ${computerScore}`);
-    }
-} */
