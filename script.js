@@ -27,11 +27,13 @@ function getComputerChoice() {
 // get the user's choice
 function getHumanChoice() {
     let humanInput = prompt(`Round ${currentRound}\n\nWhat would you like to pick?\nSelect between ~ rock, paper or scissors ~`)
-    let humanResult = humanInput.toLowerCase();     //* Immediately convert it to lower case to print a nice looking message
-    if (humanResult === 'rock' || humanResult === 'paper' || humanResult === 'scissors') {
-        return humanResult;
+    if (!humanInput) {
+        return;
     } else {
-        alert("Please refresh page and choose a valid option between ~ rock, paper or scissors ~");     //todo make it so the program stops
+        let humanResult = humanInput.toLowerCase();     //* Immediately convert it to lower case to print a nice looking message
+        if (humanResult === 'rock' || humanResult === 'paper' || humanResult === 'scissors') {
+            return humanResult;
+        } else return;
     }
 }
 
@@ -101,21 +103,35 @@ function playGame() {
     for (let i = 0; i < 5; i++) {
         humanSelection = getHumanChoice();
         computerSelection = getComputerChoice();
+
+        if (!humanSelection) break;
+
         playRound(humanSelection, computerSelection);
         currentRound = ++currentRound;
     };
 
-    if (humanScore > computerScore) {
-        console.log('\nCongratulations you won!');
-        alert('Congratulations you won!');
-    } else if (computerScore > humanScore) {
-        console.log('\nYou lost to a random algorithm!');
-        alert('You lost to a random algorithm!');
-    } else {
-        console.log('\nPerfectly balanced, it\'s a tie!');
-        alert('Perfectly balanced, it\'s a tie!');
-    }
+    displayWinner();
 
 }
 
 playGame();
+
+
+// function that displays the winner or a 'Refresh page' message in case of misinput
+function displayWinner() {
+    if (currentRound > 5) {
+        if (humanScore > computerScore) {
+            console.log('\nCongratulations you won!');
+            alert('Congratulations you won!');
+        } else if (computerScore > humanScore) {
+            console.log('\nYou lost to a random algorithm!');
+            alert('You lost to a random algorithm!');
+        } else {
+            console.log('\nPerfectly balanced, it\'s a tie!');
+            alert('Perfectly balanced, it\'s a tie!');
+        }
+    } else {
+        alert('Please refresh the page and choose a valid option between ~ rock, paper or scissors ~');
+        console.log('Please refresh the page and choose a valid option between ~ rock, paper or scissors ~');
+    };
+}
