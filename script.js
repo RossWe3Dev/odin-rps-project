@@ -24,34 +24,34 @@ function getComputerChoice() {
 }
 
 
-// get the user's choice
-function getHumanChoice() {
-    let humanInput = prompt(`Round ${currentRound}\n\nWhat would you like to pick?\nSelect between ~ rock, paper or scissors ~`)
-    if (!humanInput) {
+// get the player's choice
+function getPlayerChoice() {
+    let playerInput = prompt(`Round ${currentRound}\n\nWhat would you like to pick?\nSelect between ~ rock, paper or scissors ~`)
+    if (!playerInput) {
         return;
     } else {
-        let humanResult = humanInput.toLowerCase();     //* Immediately convert it to lower case to print a nice looking message
-        if (humanResult === 'rock' || humanResult === 'paper' || humanResult === 'scissors') {
-            return humanResult;
+        let playerResult = playerInput.toLowerCase();     //* Immediately convert it to lower case to print a nice looking message
+        if (playerResult === 'rock' || playerResult === 'paper' || playerResult === 'scissors') {
+            return playerResult;
         } else return;
     }
 }
 
 
 // variables that keep track of scores and round number, starting from round 1
-let humanScore = 0;
+let playerScore = 0;
 let computerScore = 0;
 
 let currentRound = 1;
 
 // logic for one round
-function playRound(humanChoice, computerChoice) {
+function playRound(playerChoice, computerChoice) {
     let roundResult;
 
-    if (humanChoice === computerChoice) {
+    if (playerChoice === computerChoice) {
         roundResult = "It's a Tie :| You and the Computer chose the same option.";
 
-    } else if (humanChoice === "rock") {
+    } else if (playerChoice === "rock") {
         switch (computerChoice) {
             case "paper":
                 roundResult = "You lose :( Paper beats Rock!";
@@ -60,14 +60,14 @@ function playRound(humanChoice, computerChoice) {
 
             case "scissors":
                 roundResult = "You win :) Rock beats Scissors!";
-                humanScore = ++humanScore;
+                playerScore = ++playerScore;
                 break;
         }
-    } else if (humanChoice === "paper") {
+    } else if (playerChoice === "paper") {
         switch (computerChoice) {
             case "rock":
                 roundResult = "You win :) Paper beats Rock!";
-                humanScore = ++humanScore;
+                playerScore = ++playerScore;
                 break;
 
             case "scissors":
@@ -75,11 +75,11 @@ function playRound(humanChoice, computerChoice) {
                 computerScore = ++computerScore;
                 break;
         }
-    } else if (humanChoice === "scissors") {
+    } else if (playerChoice === "scissors") {
         switch (computerChoice) {
             case "paper":
                 roundResult = "You win :) Scissors beat Paper!";
-                humanScore = ++humanScore;
+                playerScore = ++playerScore;
                 break;
 
             case "rock":
@@ -89,24 +89,24 @@ function playRound(humanChoice, computerChoice) {
         }
     }
 
-    console.log(`Round ${currentRound} \n\nPlayer chose: '${humanChoice}' - Computer chose: '${computerChoice}'`);
-    console.log(`${roundResult}\n\nPlayer score = ${humanScore} | Computer score = ${computerScore}`);
-    alert(`Player chose: '${humanChoice}' - Computer chose: '${computerChoice}'\n${roundResult}\n\nPlayer score = ${humanScore} | Computer score = ${computerScore}`);
+    console.log(`Round ${currentRound} \n\nPlayer chose: '${playerChoice}' - Computer chose: '${computerChoice}'`);
+    console.log(`${roundResult}\n\nPlayer score = ${playerScore} | Computer score = ${computerScore}`);
+    alert(`Player chose: '${playerChoice}' - Computer chose: '${computerChoice}'\n${roundResult}\n\nPlayer score = ${playerScore} | Computer score = ${computerScore}`);
 }
 
 
 // loop to call playRound 5 times and return the winner after
 function playGame() {
-    let humanSelection;
+    let playerSelection;
     let computerSelection;
 
     for (let i = 0; i < 5; i++) {
-        humanSelection = getHumanChoice();
+        playerSelection = getPlayerChoice();
         computerSelection = getComputerChoice();
 
-        if (!humanSelection) break;
+        if (!playerSelection) break;
 
-        playRound(humanSelection, computerSelection);
+        playRound(playerSelection, computerSelection);
         currentRound = ++currentRound;
     };
 
@@ -120,10 +120,10 @@ playGame();
 // function that displays the winner or a 'Refresh page' message in case of misinput
 function displayWinner() {
     if (currentRound > 5) {
-        if (humanScore > computerScore) {
+        if (playerScore > computerScore) {
             console.log('\nCongratulations you won!');
             alert('Congratulations you won!');
-        } else if (computerScore > humanScore) {
+        } else if (computerScore > playerScore) {
             console.log('\nYou lost to a random algorithm!');
             alert('You lost to a random algorithm!');
         } else {
