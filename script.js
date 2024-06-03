@@ -3,7 +3,7 @@ console.log("LET'S PLAY RPS!");
 let playerScore = 0;
 let computerScore = 0;
 
-let currentRound = 1;
+let currentRound = 0;
 
 // set button and divs references
 const rockBtn = document.querySelector("#rock");
@@ -12,28 +12,42 @@ const scissorsBtn = document.querySelector("#scissors");
 
 const result = document.querySelector(".result");
 const score = document.querySelector(".score");
-score.innerHTML = 'Round 0<br>Player Score = 0 | Computer Score = 0';
+score.innerHTML = `Round ${currentRound}<br>Player Score = ${playerScore} | Computer Score = ${computerScore}`;
+
+const gameOverPanel = document.querySelector(".game-over");
+const gameOverMessage = document.querySelector(".game-result");
+const resetBtn = document.querySelector(".reset");
 
 //! EVENTS
 rockBtn.addEventListener('click', () => {
     if (playerScore < 5 && computerScore < 5) {
-        playRound('rock', getComputerChoice());
         currentRound = ++currentRound;
+        playRound('rock', getComputerChoice());
     }
 });
 
 paperBtn.addEventListener('click', () => {
     if (playerScore < 5 && computerScore < 5) {
-        playRound('paper', getComputerChoice());
         currentRound = ++currentRound;
+        playRound('paper', getComputerChoice());
     }
 });
 
 scissorsBtn.addEventListener('click', () => {
     if (playerScore < 5 && computerScore < 5) {
-        playRound('scissors', getComputerChoice());
         currentRound = ++currentRound;
+        playRound('scissors', getComputerChoice());
     }
+});
+
+resetBtn.addEventListener('click', () => {
+    currentRound = 0;
+    playerScore = 0;
+    computerScore = 0;
+    score.innerHTML = `Round ${currentRound}<br>Player Score = ${playerScore} | Computer Score = ${computerScore}`;
+    result.innerHTML = 'Never give up!';
+    console.log("\nI GUESS YOU REALLY LIKE THIS GAME!");
+    gameOverPanel.classList.add("hide");
 });
 
 
@@ -118,10 +132,12 @@ function playRound(playerChoice, computerChoice) {
 // function that displays the winner
 function displayWinner() {
     if (playerScore === 5) {
+        gameOverPanel.classList.remove("hide");
         console.log('\nCongratulations you won!\n\nRefresh the page to play again');
-        alert('Congratulations you won!\n\nRefresh the page to play again');
+        gameOverMessage.textContent = 'Congratulations you won!';
     } else if (computerScore === 5) {
+        gameOverPanel.classList.remove("hide");
         console.log('\nYou lost to a random algorithm!\n\nRefresh the page to play again\n\nBut at least if you are reading this you found the Easter Egg ;)');
-        alert('You lost to a random algorithm!\n\nRefresh the page to play again');
+        gameOverMessage.textContent = 'You lost to a random algorithm!'
     } else return;
 }

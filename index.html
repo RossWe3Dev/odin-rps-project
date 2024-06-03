@@ -6,24 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RPS Game | by Ross We3Dev</title>
 
+    <link rel="icon" type="image/.png" href="/img/icon.png">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div class="game-title">
-        This game is a classic version of rock, paper, scissors. <br>
-        Whoever reaches 5 wins! <br>
-        Refresh page ( or press <kbd>Ctrl + R</kbd> ) to play again.
+    <div class="container">
+        <h1 class="game-title">Ultimate RPS: Can You Win 5?</h1>
+
+        <div class="score panel"></div>
+
+        <div class="buttons panel">
+            <button id="rock">
+                <img src="/img/rock.png" class="player-hand" alt="rock hand sign">
+                <p>Rock</p>
+            </button>
+            <button id="paper">
+                <img src="/img/paper.png" class="player-hand" alt="rock hand sign">
+                <p>Paper</p>
+            </button>
+            <button id="scissors">
+                <img src="/img/scissors.png" class="player-hand" alt="rock hand sign">
+                <p>Scissors</p>
+            </button>
+        </div>
+
+        <div class="result panel">
+            <hr>What will happen?
+            <hr>
+        </div>
     </div>
-    <div class="score panel"></div>
-    <div class="buttons panel">
-        <button id="rock">Rock</button>
-        <button id="paper">Paper</button>
-        <button id="scissors">Scissors</button>
-    </div>
-    <div class="result panel">
-        <hr>What will happen?
-        <hr>
+
+    <div class="game-over hide">
+        <p class="game-result"></p>
+        <button class="reset">Play Again</button>
     </div>
 
     <script src="script.js"></script>

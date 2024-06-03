@@ -1,7 +1,14 @@
 # RPS Game - The Odin Project inspired website
 
-First project that implements JS - A simple Rock Paper Scissors game played mainly in the console
+Rock Paper Scissors ✊✋✌
 
-The program behind the game followed the directions from The Odin Project exercise about JS.
+This is a classic Rock, Paper, Scissors game built using JavaScript. Originally a console-based project inspired by The Odin Project's curriculum, it has now evolved into a dynamic web experience!
 
-Will come back to it once I have more knowledge ;)
+ ### Features:
+
+- Play Rock, Paper, Scissors against the computer.
+- Interactive buttons for user input.
+- Visual feedback with images for each hand gesture.
+- Clean and user-friendly interface.
+
+This project is a continuous learning experience, and further improvements are planned.
