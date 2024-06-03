@@ -1,9 +1,46 @@
 console.log("LET'S PLAY RPS!");
+// variables that keep track of scores and round number, starting from round 1
+let playerScore = 0;
+let computerScore = 0;
+
+let currentRound = 1;
+
+// set button and divs references
+const rockBtn = document.querySelector("#rock");
+const paperBtn = document.querySelector("#paper");
+const scissorsBtn = document.querySelector("#scissors");
+
+const result = document.querySelector(".result");
+const score = document.querySelector(".score");
+score.innerHTML = 'Round 0<br>Player Score = 0 | Computer Score = 0';
+
+//! EVENTS
+rockBtn.addEventListener('click', () => {
+    if (playerScore < 5 && computerScore < 5) {
+        playRound('rock', getComputerChoice());
+        currentRound = ++currentRound;
+    }
+});
+
+paperBtn.addEventListener('click', () => {
+    if (playerScore < 5 && computerScore < 5) {
+        playRound('paper', getComputerChoice());
+        currentRound = ++currentRound;
+    }
+});
+
+scissorsBtn.addEventListener('click', () => {
+    if (playerScore < 5 && computerScore < 5) {
+        playRound('scissors', getComputerChoice());
+        currentRound = ++currentRound;
+    }
+});
 
 
+//! FUNCTIONS AND LOGIC
 // get the computer choice between rock, paper or scissors
 
-//* function to get a random integer between 0, 1 and 2, for a total of 3 choices
+//* function to get a random integer between 0 and max (excluded), for a total of max choices
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 };
@@ -23,26 +60,6 @@ function getComputerChoice() {
     return pcResult;
 }
 
-
-// get the player's choice
-function getPlayerChoice() {
-    let playerInput = prompt(`Round ${currentRound}\n\nWhat would you like to pick?\nSelect between ~ rock, paper or scissors ~`)
-    if (!playerInput) {
-        return;
-    } else {
-        let playerResult = playerInput.toLowerCase();     //* Immediately convert it to lower case to print a nice looking message
-        if (playerResult === 'rock' || playerResult === 'paper' || playerResult === 'scissors') {
-            return playerResult;
-        } else return;
-    }
-}
-
-
-// variables that keep track of scores and round number, starting from round 1
-let playerScore = 0;
-let computerScore = 0;
-
-let currentRound = 1;
 
 // logic for one round
 function playRound(playerChoice, computerChoice) {
@@ -89,49 +106,22 @@ function playRound(playerChoice, computerChoice) {
         }
     }
 
+    score.innerHTML = `Round ${currentRound}<br>Player Score = ${playerScore} | Computer Score = ${computerScore}`;
+    result.innerHTML = `<i>Player chose: '${playerChoice}' - Computer chose: '${computerChoice}'</i><br><br>${roundResult}`;
     console.log(`Round ${currentRound} \n\nPlayer chose: '${playerChoice}' - Computer chose: '${computerChoice}'`);
     console.log(`${roundResult}\n\nPlayer score = ${playerScore} | Computer score = ${computerScore}`);
-    alert(`Player chose: '${playerChoice}' - Computer chose: '${computerChoice}'\n${roundResult}\n\nPlayer score = ${playerScore} | Computer score = ${computerScore}`);
-}
-
-
-// loop to call playRound 5 times and return the winner after
-function playGame() {
-    let playerSelection;
-    let computerSelection;
-
-    for (let i = 0; i < 5; i++) {
-        playerSelection = getPlayerChoice();
-        computerSelection = getComputerChoice();
-
-        if (!playerSelection) break;
-
-        playRound(playerSelection, computerSelection);
-        currentRound = ++currentRound;
-    };
 
     displayWinner();
-
 }
 
-playGame();
 
-
-// function that displays the winner or a 'Refresh page' message in case of misinput
+// function that displays the winner
 function displayWinner() {
-    if (currentRound > 5) {
-        if (playerScore > computerScore) {
-            console.log('\nCongratulations you won!');
-            alert('Congratulations you won!');
-        } else if (computerScore > playerScore) {
-            console.log('\nYou lost to a random algorithm!');
-            alert('You lost to a random algorithm!');
-        } else {
-            console.log('\nPerfectly balanced, it\'s a tie!');
-            alert('Perfectly balanced, it\'s a tie!');
-        }
-    } else {
-        alert('Please refresh the page and choose a valid option between ~ rock, paper or scissors ~');
-        console.log('Please refresh the page and choose a valid option between ~ rock, paper or scissors ~');
-    };
+    if (playerScore === 5) {
+        console.log('\nCongratulations you won!\n\nRefresh the page to play again');
+        alert('Congratulations you won!\n\nRefresh the page to play again');
+    } else if (computerScore === 5) {
+        console.log('\nYou lost to a random algorithm!\n\nRefresh the page to play again\n\nBut at least if you are reading this you found the Easter Egg ;)');
+        alert('You lost to a random algorithm!\n\nRefresh the page to play again');
+    } else return;
 }
