@@ -10,6 +10,7 @@ body {
     background-image: url(./img/bg.jpg);
     background-position: center;
     display: flex;
+    justify-content: center;
     align-items: center;
     position: relative;
 }
@@ -45,18 +46,23 @@ body {
     margin-bottom: 1rem;
 }
 
-hr {
-    border: 1px dashed white;
-    margin: 0.5rem;
-}
-
 button {
     padding: 0.5rem;
     border-radius: 0.25rem;
+    border: none;
     font-size: 1rem;
     text-transform: uppercase;
-    background-color: rgb(255, 255, 255);
+    font-weight: bolder;
+    background-color: white;
     cursor: pointer;
+}
+
+button:hover {
+    background-color: rgb(173, 216, 230);
+}
+
+button:active {
+    background-color: rgb(40, 180, 229);
 }
 
 .player-hand {
@@ -70,7 +76,17 @@ button {
     gap: 1em;
 }
 
+.result {
+    min-height: 3rem;
+}
+
+hr {
+    border: 1px dashed white;
+    margin: 0.5rem;
+}
+
 .game-over {
+    z-index: 2;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -81,14 +97,42 @@ button {
     border-radius: 0.5rem;
     padding: 1.5em;
     margin-bottom: 1rem;
+    transform: scale(1);
+    transition: 300ms ease-in-out;
 }
 
 .game-over.hide {
-    display: none;
+    transform: scale(0);
 }
 
 .game-over>p {
     font-weight: bold;
     text-shadow: 0 0 0.3rem white;
     margin-bottom: 0.5rem;
+}
+
+.reset,
+.reset:hover,
+.reset:active {
+    border: 2px solid white;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    font-size: 0.8rem;
+    height: 6vh;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+footer>a {
+    scale: 1;
+    transition: transform 0.3s ease-in-out;
+}
+
+footer>a:hover {
+    transform: rotate(360deg) scale(1.2);
 }
