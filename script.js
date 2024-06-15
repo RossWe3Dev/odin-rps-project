@@ -5,7 +5,7 @@ let computerScore = 0;
 
 let currentRound = 0;
 
-// set button and divs references
+// dom nodes
 const rockBtn = document.querySelector("#rock");
 const paperBtn = document.querySelector("#paper");
 const scissorsBtn = document.querySelector("#scissors");
@@ -45,7 +45,7 @@ resetBtn.addEventListener('click', () => {
     playerScore = 0;
     computerScore = 0;
     score.innerHTML = `Round ${currentRound}<br>Player Score = ${playerScore} | Computer Score = ${computerScore}`;
-    result.innerHTML = 'Never give up!';
+    result.innerHTML = `<p style="margin-top:1rem;">Never give up!</p>`;
     console.log("\nI GUESS YOU REALLY LIKE THIS GAME!");
     gameOverPanel.classList.add("hide");
 });
